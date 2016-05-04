@@ -7,9 +7,12 @@ Nowadays, capabilities of this API are:
   - Obtain all collection items
   
     ```GET http://yourhost/api/coins```
+  - Obtain single item
+
+  ```GET http://yourhost/api/coins/{id}```
   - Update status of an item (set status=0 as not owned and status=1 as owned)
   
-    
+  ```PUT http://yourhost/api/coins/{id}?status={status}```  
 
 ### TO-DOs
   - Implement authorization service
