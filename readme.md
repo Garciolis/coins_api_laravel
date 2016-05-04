@@ -5,7 +5,11 @@ This project is a restful API written in PHP with Laravel framework designed to 
 ### Capabilities
 Nowadays, capabilities of this API are:
   - Obtain all collection items
+  
+    ```GET http://yourhost/api/coins```
   - Update status of an item (set status=0 as not owned and status=1 as owned)
+  
+    
 
 ### TO-DOs
   - Implement authorization service
