@@ -12,5 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+	return 'Hello world';
+});
+
+//Define API routing
+Route::group(array('prefix' => 'api'), function()
+{
+	Route::resource('coin', 'CoinController', ['except'=>['create', 'store', 'edit', 'destroy']]);
 });
