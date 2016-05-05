@@ -60,24 +60,26 @@ class CoinController extends Controller
  
 		//Value of status received
 		$status = $request->input('status');
+		
+		//Status cannot be null or empty
+		if ($status==null || $status==='') {
+			return response()->json(['status' => 1, 'message' => 'No se ha proporcionado valor para status'], 404);
+		}
+		
+		//Status must have value 0, 1 or 2
+		if ($status<0 || $status>3)
+		{
+			return response()->json(['status' => 1, 'message' => 'El valor proporcionado para status no es correcto'], 404);
+		}
 
-		//Check if method is PUT or PATCH
+		//Check if method is PUT or PATCH and apply changes
 		if ($request->method()==='PUT' || $request->method()==='PATCH')
 		{
-			//If status has value, modify it
-			if ($status!=null && $status!='')
-			{
-				$coin->status = $status;
-				
-				//Update value and return
-				$coin->save();
-				return response()->json(['status' => 0,'result' => true], 200);
-			}
-			else
-			{
-				return response()->json(['status' => 1, 'message' => 'No se ha modificado ningún dato'], 404);
-			}
- 
+			$coin->status = $status;
+			
+			//Update value and return
+			$coin->save();
+			return response()->json(['status' => 0,'result' => true], 200);
 		}
 	}
 }
